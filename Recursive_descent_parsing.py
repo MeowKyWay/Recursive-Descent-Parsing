@@ -21,7 +21,6 @@ def backtrack(s, grammar, ite=[], index=0):
                 temp.insert(index+i, word[i])
                 
             #print("".join(temp)) #debugging
-            
             flag = backtrack(s, grammar, temp, index)
             if flag:
                 return True
@@ -40,7 +39,9 @@ for i in range(n):
         
 s = input("Enter the string: ")
 
-if backtrack(s, grammar):
+start = input("Enter the start symbol: ")
+
+if backtrack(s, grammar, [*start]):
     print("String is accepted")
 else:
     print("String is not accepted")
