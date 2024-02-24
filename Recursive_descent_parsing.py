@@ -15,8 +15,6 @@ def backtrack(s, grammar, ite=[], index=0):
     
     if ite[index] in grammar:
         for word in grammar[ite[index]]:
-            
-            #bruh no string manipulation
             temp = ite.copy()
             temp.pop(index)
             for i in range(len(word)):
