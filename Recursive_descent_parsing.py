@@ -1,20 +1,20 @@
 def backtrack(s, grammar, ite=[], index=0):
-    if "".join(ite) == s:
+    if "".join(ite) == s: #check if iterator is equal to string
         return True
     
-    if (len(ite) == 0):
+    if (len(ite) == 0): #check if iterator is empty
         return backtrack(s, grammar, [list(grammar.keys())[0]], index)
     
-    if len(ite)<=index or len(s)<=index or len(ite)<=index:
+    if len(ite)<=index or len(s)<=index or len(ite)<=index: #check if index is out of range
         return False
     
-    if ite[index] == s[index]:
+    if ite[index] == s[index]: #check if matching
         flag = backtrack(s, grammar, ite, index+1)
         if flag:
             return True
     
-    if ite[index] in grammar:
-        for word in grammar[ite[index]]:
+    if ite[index] in grammar: #check if non-terminal
+        for word in grammar[ite[index]]: #iterate through the words
             temp = ite.copy()
             temp.pop(index)
             for i in range(len(word)):
@@ -24,6 +24,8 @@ def backtrack(s, grammar, ite=[], index=0):
             flag = backtrack(s, grammar, temp, index)
             if flag:
                 return True
+            
+    #check if mismatch
     return False
 
 n = int(input("Enter the number of grammar: "))
